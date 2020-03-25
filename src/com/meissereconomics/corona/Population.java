@@ -50,12 +50,10 @@ public class Population implements IPopulation {
 	}
 
 	/**
-	 * Calculates the average aggregate "R", or the number of people
-	 * the average host is expected to infect at average.
+	 * Calculates the average aggregate "R", or the number of people the average host is expected to infect at average.
 	 * 
-	 * Since not every person is average and there is randomness involved,
-	 * an R<1.0 does not suffices to prevent future outbreaks completely,
-	 * but they will most likely be milder than the first outbreak.
+	 * Since not every person is average and there is randomness involved, an R<1.0 does not suffices to prevent future outbreaks completely, but they will most likely be milder than the first
+	 * outbreak.
 	 */
 	private double calculateR() {
 		double susceptibleInteractions = 0.0;
@@ -73,7 +71,9 @@ public class Population implements IPopulation {
 	private int lockdown = -1;
 
 	public void tick() {
-		getRandomHost().infect();
+		if (lockdownThreshold > 0.0) {
+			getRandomHost().infect();
+		}
 		considerLockdown();
 		if (isLockdown()) {
 			lockdown--;
@@ -147,7 +147,7 @@ public class Population implements IPopulation {
 	public String labels() {
 		String postfix = " (" + name + ")\t";
 		String labels = "Susceptible" + postfix;
-		labels += "Exposed or Infectious" + postfix;
+		labels += "Infected" + postfix; // Exposed or Infectious
 		labels += "Recovered" + postfix;
 		labels += "R" + postfix;
 		return labels;
