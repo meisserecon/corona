@@ -43,7 +43,7 @@ The following chart compares a perfectly timed lockdown in the traditional model
 
 ![alt_text](images/comparison-3.png "Model comparison")
 
-In the traditional model, reaching herd immunity takes quite long. With R0=3.0, one has to wait until 75% of the population is infected. A perfectly timed lockdown at that moment prevents the remaining 25% from getting sick.
+In the traditional model, reaching herd immunity takes quite long. With R0=3.0, one has to wait until 66% of the population is infected (here, I wait a little longer to be on the safe side). A well-timed lockdown at that moment prevents up to 33% of the population from getting sick.
 
 In the model with heterogeneous contagion, herd immunity is reached earlier and a well-timed lockdown prevents much more cases. In the end, only about 20% of the population is infected.
 
