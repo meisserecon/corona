@@ -22,7 +22,7 @@ Of course, you can always tweak this model, but you will always come to a very d
 
 # Allowing Variation in the Infection Rate
 
-All of this looks much better with a small adjustment to make it more realistic. In reality, not everyone spreads the virus equally fast. Some people stay at home all day while others permanently meet people and shake hands. Usually, social networks follow some kind of powerlaw distribution: some people have lots of contacts, and most people have fewer than average contacts. I will make a very soft assumption and instead of say that 20% of the people are responsible for 80% of all contacts (as the pareto principle would say), I’ll simulate a scenario in which 33% of all hosts are responsible for 66% of all contacts. In scale-free networks, this is applied recursively. This leads to having a minority of super-spreaders who are very social and have lots of contacts with others. These super-spreaders will spread the virus very fast, but also most likely be among the first to get it. Simulating this with the same R0=3.0, we get a slightly different picture (the lighter colors are the new data with the implicit power-law network):
+All of this looks much better with a small adjustment to make it more realistic. In reality, not everyone spreads the virus equally fast. Some people stay at home all day while others permanently meet people and shake hands. Usually, social networks follow some kind of powerlaw distribution: some people have lots of contacts, and most people have fewer than average contacts. I will make a very soft assumption and instead of say that 20% of the people are responsible for 80% of all contacts (as the pareto principle would say), Iâ€™ll simulate a scenario in which 33% of all hosts are responsible for 66% of all contacts. In scale-free networks, this is applied recursively. This leads to having a minority of super-spreaders who are very social and have lots of contacts with others. These super-spreaders will spread the virus very fast, but also most likely be among the first to get it. Simulating this with the same R0=3.0, we get a slightly different picture (the lighter colors are the new data with the implicit power-law network):
 
 ![alt_text](images/comparison-1.png "Model comparison")
 
@@ -36,7 +36,7 @@ Since the new model climbs up way too fast in the beginning, it makes sense to a
 
 The nice effect of that is that the number of eventually infected is again somewhat lower.
 
-# Earlier Herd Immunity
+# Well-timed Lockdown
 The biggest and nicest news is yet to come: In the traditional model, herd immunity is reached when 66% are infected (with R0=3.0). However, in the powerlaw model, herd immunity is already achieved with only 10% infected persons. Infecting the other 60% could be avoided with a well-timed lockdown: if a lockdown is put in place right at that moment, the super-spreaders cannot spread the virus further and the pandemia ends.
 
 The following chart compares a perfectly timed lockdown in the traditional model with a perfectly timed lockdown in the super-spreader model.
