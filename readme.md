@@ -5,7 +5,7 @@ Author: Luzius Meisser, [luzius.meisser@uzh.ch](mailto:luzius@meissereconomics.c
 
 # Summary
 
-The usual pandemia models assume the infection rate to be the same for all citizens (for example [covidsim.eu](http://covidsim.eu) or the  [Robert Koch Institute Model](https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Modellierung_Deutschland.pdf?__blob=publicationFile)). However, in reality, social interactions follow a power-law distribution: some people are much better connected than others and also have much more potentially contagious social interactions with a more diverse set of others. Assuming the power-law distribution usually observed in social networks, there should be a few super-spreaders with a very high infection rate (e.g. a politician who shakes hands all day), and many less connected citizens with a low infection rate (e.g. a gamer :) ). Naturally, the super-spreaders are not only the ones who spread the disease the most, but also the ones that will get it first. As a consequence, the infection rate R0 will look very high in the initial phase of a pandemic, but decline sharply once the super-spreaders are cured (or dead). A further consequence is that herd immunity is reached much faster and that a well-timed lockdown can stop the disease much earlier than what other models suggest.
+The usual pandemic models assume the infection rate to be the same for all citizens (for example [covidsim.eu](http://covidsim.eu) or the  [Robert Koch Institute Model](https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Modellierung_Deutschland.pdf?__blob=publicationFile)). However, in reality, social interactions follow a power-law distribution: some people are much better connected than others and also have much more potentially contagious social interactions with a more diverse set of others. Assuming the power-law distribution usually observed in social networks, there should be a few super-spreaders with a very high infection rate (e.g. a politician who shakes hands all day), and many less connected citizens with a low infection rate (e.g. a gamer :) ). Naturally, the super-spreaders are not only the ones who spread the disease the most, but also the ones that will get it first. As a consequence, the infection rate R0 will look very high in the initial phase of a pandemic, but decline sharply once the super-spreaders are cured (or dead). A further consequence is that herd immunity is reached much faster and that a well-timed lockdown can stop the disease much earlier than what other models suggest.
 
 
 # Base Model
@@ -37,7 +37,7 @@ Since the new model climbs up way too fast in the beginning, it makes sense to a
 The nice effect of that is that the number of eventually infected is again somewhat lower.
 
 # Well-timed Lockdown
-The biggest and nicest news is yet to come: In the traditional model, herd immunity is reached when 66% are infected (with R0=3.0). However, in the powerlaw model, herd immunity is already achieved with only 10% infected persons. Infecting the other 60% could be avoided with a well-timed lockdown: if a lockdown is put in place right at that moment, the super-spreaders cannot spread the virus further and the pandemia ends.
+The biggest and nicest news is yet to come: In the traditional model, herd immunity is reached when 66% are infected (with R0=3.0). However, in the powerlaw model, herd immunity is already achieved with only 10% infected persons. Infecting the other 60% could be avoided with a well-timed lockdown: if a lockdown is put in place right at that moment, the super-spreaders cannot spread the virus further and the pandemic ends.
 
 The following chart compares a perfectly timed lockdown in the traditional model with a perfectly timed lockdown in the super-spreader model.
 
@@ -51,8 +51,8 @@ To test whether herd immunity has actually been reached, I adjusted the model su
 
 # Conclusion
 
-Taking into account that not every host has the same infection rate (i.e. allowing for heterogeneous R0) makes a huge difference and I am much more hopeful again that this crisis will be over again sometime this summer. After that, we might still see sporadic local outbreaks, but the pandemia should be over.
+Taking into account that not every host has the same infection rate (i.e. allowing for heterogeneous R0) makes a huge difference and I am much more hopeful again that this crisis will be over again sometime this summer. After that, we might still see sporadic local outbreaks, but the pandemic should be over.
 
 All of this should not be misunderstood as a justification to be less careful. Even in my optimistic scenario, 20% of the population is sick at the same time around day 40, overwhelming the health system if not accompanied by ancilliary measures. Also note that everything will play out slower in a larger population or when the curve is flattened thanks to the well-known counter-measures. Nonetheless, this model can provide some hope for those who just read the usual extremely pessimistic forecasts and it can help in explaining why the infection rate seems to go down over time at a faster rate than the traditional model predicts.
 
-All in all, the key take-away is: taking into account that people are different, the pandemia will be a less dramatic than traditional models suggest, in particular when combined with a well-timed lockdown.
+All in all, the key take-away is: taking into account that people are different, the pandemic will be a less dramatic than traditional models suggest, in particular when combined with a well-timed lockdown.
