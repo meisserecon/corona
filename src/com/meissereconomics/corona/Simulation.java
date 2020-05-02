@@ -8,11 +8,11 @@ public class Simulation {
 
 	private ArrayList<Population> models;
 
-	public Simulation(long seed, double lockdownThreshold) {
+	public Simulation(long seed, boolean lockdown) {
 		this.models = new ArrayList<Population>();
-		this.models.add(new Population("traditional", seed, SIZE, 3.0, lockdownThreshold, false));
-		this.models.add(new Population("network", seed, SIZE, 3.0, lockdownThreshold, true));
-		this.models.add(new Population("network adjusted r0", seed, SIZE, 2.0, lockdownThreshold, true));
+		this.models.add(new Population("traditional", seed, SIZE, 3.0, lockdown ? 0.9 : 0.0, false));
+		this.models.add(new Population("network", seed, SIZE, 3.0, lockdown ? 1.5 : 0.0, true));
+		this.models.add(new Population("network adjusted r0", seed, SIZE, 2.35, lockdown ? 1.5 : 0.0, true));
 	}
 
 	public void run() {
@@ -54,10 +54,10 @@ public class Simulation {
 	}
 
 	public static void main(String[] args) {
-		long seed = 23;
-//		double lockdownThreshold = 0.0; // set to 0.0 to disable lockdown and get the results for the first three charts
-		double lockdownThreshold = 0.6; // use this line to simulate lockdown
-		Simulation s1 = new Simulation(seed, lockdownThreshold);
+		long seed = 13;
+//		boolean lockdown = false; // set to 0.0 to disable lockdown and get the results for the first three charts
+		boolean lockdown = true; // use this line to simulate lockdown
+		Simulation s1 = new Simulation(seed, lockdown);
 		s1.run();
 	}
 

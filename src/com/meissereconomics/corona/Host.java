@@ -12,7 +12,7 @@ public class Host {
 	public Host(double contacts) {
 		this.immune = false;
 		this.sick = 0;
-		this.contactsPerPeriod = contacts / DURATION / 2.0;
+		this.contactsPerPeriod = contacts / DURATION;
 	}
 
 	public double getInteractionsPerPeriod() {
@@ -21,7 +21,7 @@ public class Host {
 	
 	public void spread(IPopulation pop) {
 		if (isSusceptible() || isInfectuous()) {
-			double contacts = this.contactsPerPeriod;
+			double contacts = this.contactsPerPeriod / 2.0;
 			while (contacts >= 1.0) {
 				contact(pop.getRandomHost());
 				contacts -= 1.0;

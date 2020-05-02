@@ -1,6 +1,7 @@
 package com.meissereconomics.corona;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 import java.util.function.Predicate;
 
@@ -16,8 +17,10 @@ public class Population implements IPopulation {
 	private final String name;
 	private final boolean network;
 	private final ArrayList<Host> hosts;
+	private final double[] index;
 	private final double r0;
 	private double lockdownThreshold;
+	private double totWeight;
 
 	public Population(String name, long seed, int size, double r0, double lockdown, boolean network) {
 		this.name = name;
@@ -27,6 +30,15 @@ public class Population implements IPopulation {
 		this.hosts = new ArrayList<Host>();
 		this.network = network;
 		createPowerLawDistributedHosts(r0 * size, size);
+//		createGeometricallyDistributedHosts(1.0 / r0, size, 1);
+		this.index = new double[hosts.size()];
+		this.totWeight = 0.0;
+		int pos = 0;
+		for (Host h : hosts) {
+			totWeight += h.getInteractionsPerPeriod() * DURATION;
+			index[pos++] = totWeight;
+		}
+//		System.out.println(totWeight / hosts.size() + " weight per host");
 		for (int j = 0; j < INITIAL_INFECTIONS; j++) {
 			Host random = getRandomHost();
 			random.infect();
@@ -34,18 +46,28 @@ public class Population implements IPopulation {
 		}
 	}
 
-	private void createPowerLawDistributedHosts(double contacts, int size) {
-		if (size < 100) {
-			for (int i = 0; i < size; i++) {
-				this.hosts.add(new Host(contacts / size));
-			}
+	private void createGeometricallyDistributedHosts(double p, int size, double contacts) {
+		if (size == 1) {
+//			System.out.println("Creating " + 1 + " hosts with " + contacts);
+			this.hosts.add(new Host(contacts));
 		} else {
-			int superspreaders = size / POWER_LAW;
-			int normies = size - superspreaders;
-			double contactsForNormies = contacts / POWER_LAW;
-			double contactsForSS = contacts - contactsForNormies;
-			createPowerLawDistributedHosts(contactsForSS, superspreaders);
-			createPowerLawDistributedHosts(contactsForNormies, normies);
+			int number = (int) Math.round(p * size);
+			int next = size - number;
+//			System.out.println("Creating " + number + " hosts with " + contacts);
+			for (int i = 0; i < number; i++) {
+				this.hosts.add(new Host(contacts));
+			}
+			createGeometricallyDistributedHosts(p, next, contacts + 1);
+		}
+	}
+
+	private void createPowerLawDistributedHosts(double contacts, int size) {
+		double average = contacts / size;
+		double alpha = average / (average - 1);
+		for (int i = 0; i < size; i++) {
+			double uniform = rand.nextDouble();
+			double x = 1.0 / Math.pow(1.0 - uniform, 1.0 / alpha);
+			this.hosts.add(new Host(x / 2.0));
 		}
 	}
 
@@ -106,7 +128,16 @@ public class Population implements IPopulation {
 
 	@Override
 	public Host getRandomHost() {
-		return hosts.get(rand.nextInt(hosts.size()));
+		if (network) {
+			double random = rand.nextDouble() * totWeight;
+			int index = Arrays.binarySearch(this.index, random);
+			if (index < 0) {
+				index = -index - 1;
+			}
+			return hosts.get(index);
+		} else {
+			return hosts.get(rand.nextInt(hosts.size()));
+		}
 	}
 
 	public int count(Predicate<Host> pred) {
@@ -151,6 +182,10 @@ public class Population implements IPopulation {
 		labels += "Recovered" + postfix;
 		labels += "R" + postfix;
 		return labels;
+	}
+
+	public static void main(String[] args) {
+		Population pop = new Population("test", 17l, 1000, 3.0, 0.0, true);
 	}
 
 }
